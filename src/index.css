@@ -23,6 +23,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.no-scroll {
+  overflow: hidden;
+  position: fixed;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -183,10 +188,10 @@ img {
 /*
 * Стили компонента Buton (Load more)
 */
-.loadButton{
+.loadButton {
   display: flex;
   justify-content: center;
-  margin: 10px
+  margin: 10px;
 }
 
 .button {
