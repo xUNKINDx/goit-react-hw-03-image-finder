@@ -5,6 +5,7 @@ import { Component } from 'react';
 
 const initialState = {
   imageURL: null,
+  tags: null,
 };
 
 class ImageGalleryItem extends Component {
@@ -14,8 +15,9 @@ class ImageGalleryItem extends Component {
     event.preventDefault();
 
     const imageURL = event.currentTarget.href;
-
-    this.setState(prevState => ({ imageURL: imageURL }));
+    const tags = event.currentTarget.dataset['alt'];
+    console.log(tags);
+    this.setState(prevState => ({ imageURL: imageURL, tags: tags }));
   };
 
   onModalClose = () => {
@@ -24,14 +26,18 @@ class ImageGalleryItem extends Component {
 
   render() {
     const { images } = this.props;
-    const { imageURL } = this.state;
+    const { imageURL, tags } = this.state;
 
     return (
       <>
         {images.map(image => (
           <Fragment key={image.id}>
             <li className="imageGalleryItem">
-              <a href={image.imageURL} onClick={this.onClickHandler}>
+              <a
+                href={image.imageURL}
+                data-alt={image.tags}
+                onClick={this.onClickHandler}
+              >
                 <img
                   src={image.previewURL}
                   alt={image.tags}
@@ -44,7 +50,7 @@ class ImageGalleryItem extends Component {
         {imageURL && (
           <Modal
             imageURL={imageURL}
-            tags={'tag'}
+            tags={tags}
             onModalClose={this.onModalClose}
           />
         )}
@@ -52,30 +58,6 @@ class ImageGalleryItem extends Component {
     );
   }
 }
-
-// const ImageGalleryItem = props => {
-//   const { images } = props;
-
-//   onClickHandler = event => {
-//     event.preventDefault();
-
-//     event.currentTarget;
-//   };
-
-//   return images.map((image, index) => (
-//     <Fragment key={image.id}>
-//       <li className="imageGalleryItem">
-//         <a href={image.imageURL}>
-//           <img
-//             src={image.previewURL}
-//             alt={image.tags}
-//             className="imageGalleryItem-image"
-//           />
-//         </a>
-//       </li>
-//     </Fragment>
-//   ));
-// };
 
 ImageGalleryItem.propTypes = {
   images: PropTypes.array.isRequired,
