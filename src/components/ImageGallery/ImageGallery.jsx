@@ -31,6 +31,15 @@ class ImageGallery extends Component {
     }
   }
 
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (
+  //     prevProps.filter !== this.props.filter ||
+  //     prevState.page !== this.state.page
+  //   ) {
+  //     this.loadImages();
+  //   }
+  // }
+
   loadNextPage = async () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };

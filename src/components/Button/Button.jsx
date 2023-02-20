@@ -4,7 +4,7 @@ const Button = props => {
   const { onClick } = props;
 
   return (
-    <>
+    <><div className='loadButton'>
       <button
         className="button"
         name="loadMore"
@@ -13,6 +13,7 @@ const Button = props => {
       >
         Load more
       </button>
+      </div>
     </>
   );
 };
