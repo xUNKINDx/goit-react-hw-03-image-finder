@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { getImages } from 'pixabayApi';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import Button from 'components/Button/Button';
+import Loader from 'components/Loader/Loader';
 
 const initialState = {
   images: [],
@@ -30,15 +31,6 @@ class ImageGallery extends Component {
       this.loadImages(false);
     }
   }
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (
-  //     prevProps.filter !== this.props.filter ||
-  //     prevState.page !== this.state.page
-  //   ) {
-  //     this.loadImages();
-  //   }
-  // }
 
   loadNextPage = async () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
@@ -71,15 +63,19 @@ class ImageGallery extends Component {
   };
 
   render() {
-    const { images, totalHits, page } = this.state;
+    const { images, totalHits, page, isLoading } = this.state;
 
     return (
       <>
         <ul className="imageGallery">
           {images.length > 0 && <ImageGalleryItem images={images} />}
         </ul>
-        {images.length > 0 && totalHits / 12 > page && (
-          <Button onClick={this.loadNextPage} />
+
+        {isLoading ? (
+          <Loader />
+        ) : (
+          images.length > 0 &&
+          totalHits / 12 > page && <Button onClick={this.loadNextPage} />
         )}
       </>
     );
