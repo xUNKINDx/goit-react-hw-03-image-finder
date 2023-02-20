@@ -44,7 +44,6 @@ class ImageGalleryItem extends Component {
         {imageURL && (
           <Modal
             imageURL={imageURL}
-            tags={'tag'}
             onModalClose={this.onModalClose}
           />
         )}
@@ -52,30 +51,6 @@ class ImageGalleryItem extends Component {
     );
   }
 }
-
-// const ImageGalleryItem = props => {
-//   const { images } = props;
-
-//   onClickHandler = event => {
-//     event.preventDefault();
-
-//     event.currentTarget;
-//   };
-
-//   return images.map((image, index) => (
-//     <Fragment key={image.id}>
-//       <li className="imageGalleryItem">
-//         <a href={image.imageURL}>
-//           <img
-//             src={image.previewURL}
-//             alt={image.tags}
-//             className="imageGalleryItem-image"
-//           />
-//         </a>
-//       </li>
-//     </Fragment>
-//   ));
-// };
 
 ImageGalleryItem.propTypes = {
   images: PropTypes.array.isRequired,
