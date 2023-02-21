@@ -17,11 +17,15 @@ class Modal extends Component {
   componentDidMount() {
     document.addEventListener('keydown', this.onKeydown);
     document.body.classList.add('no-scroll');
+    // document.body.style.position = 'fixed';
+    // document.body.style.top = `-${window.scrollY}px`;
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.onKeydown);
     document.body.classList.remove('no-scroll');
+    // document.body.style.position = '';
+    // document.body.style.top = '';
   }
 
   render() {
